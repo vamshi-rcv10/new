@@ -16,3 +16,26 @@ body {
 a {
   text-decoration: none;
 }
+/* Styles for mobile devices */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Add more styles to adapt your layout to mobile */
+  .header {
+    font-size: 1.2rem;
+  }
+  
+  .menu-item {
+    display: block;
+    margin-bottom: 15px;
+  }
+}
+

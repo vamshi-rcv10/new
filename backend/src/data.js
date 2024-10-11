@@ -3,7 +3,7 @@ export const sample_foods = [
     id: '1',
     name: 'Chicken Pizza',
     cookTime: '10-20',
-    price: 180,
+    price: 15,
     favorite: false,
     origins: ['italy'],
     stars: 4.5,
@@ -13,7 +13,7 @@ export const sample_foods = [
   {
     id: '2',
     name: 'Chicken Biryani',
-    price: 220,
+    price: 20,
     cookTime: '40-50',
     favorite: true,
     origins: ['Hyderabad','South-India','Asia'],
@@ -24,7 +24,7 @@ export const sample_foods = [
   {
     id: '3',
     name: 'Chicken Burger',
-    price: 99,
+    price: 9,
     cookTime: '10-15',
     favorite: false,
     origins: ['germany', 'us'],
@@ -35,7 +35,7 @@ export const sample_foods = [
   {
     id: '4',
     name: 'French Fries',
-    price: 20,
+    price: 5,
     cookTime: '15-20',
     favorite: true,
     origins: ['belgium', 'france'],
@@ -46,7 +46,7 @@ export const sample_foods = [
   {
     id: '5',
     name: 'Chicken Soup',
-    price: 99,
+    price: 9,
     cookTime: '10-25',
     favorite: false,
     origins: ['india', 'asia'],
@@ -57,7 +57,7 @@ export const sample_foods = [
   {
     id: '6',
     name: 'Vegetables Pizza',
-    price: 120,
+    price: 12,
     cookTime: '10-20',
     favorite: false,
     origins: ['italy'],

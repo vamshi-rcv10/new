@@ -1,8 +1,10 @@
 import { UNAUTHORIZED } from '../constants/httpStatus.js';
 import authMid from './auth.mid.js';
-const adminMid = (req, res, next) => {
-  if (!req.user.isAdmin) res.status(UNAUTHORIZED).send();
 
+const adminMid = (req, res, next) => {
+  if (!req.user || !req.user.isAdmin) {
+    return res.status(UNAUTHORIZED).send({ message: 'Admin access required' });
+  }
   return next();
 };
 

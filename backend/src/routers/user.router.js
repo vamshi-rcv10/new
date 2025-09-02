@@ -1,14 +1,19 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
-const router = Router();
+import dotenv from 'dotenv';
 import { BAD_REQUEST } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import auth from '../middleware/auth.mid.js';
 import admin from '../middleware/admin.mid.js';
+
+dotenv.config(); // ✅ load .env file
+
+const router = Router();
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 
+// -------------------- LOGIN --------------------
 router.post(
   '/login',
   handler(async (req, res) => {
@@ -24,6 +29,7 @@ router.post(
   })
 );
 
+// -------------------- REGISTER --------------------
 router.post(
   '/register',
   handler(async (req, res) => {
@@ -53,6 +59,7 @@ router.post(
   })
 );
 
+// -------------------- UPDATE PROFILE --------------------
 router.put(
   '/updateProfile',
   auth,
@@ -68,6 +75,7 @@ router.put(
   })
 );
 
+// -------------------- CHANGE PASSWORD --------------------
 router.put(
   '/changePassword',
   auth,
@@ -94,6 +102,7 @@ router.put(
   })
 );
 
+// -------------------- ADMIN ROUTES --------------------
 router.get(
   '/getall/:searchTerm?',
   admin,
@@ -122,7 +131,7 @@ router.put(
 
     const user = await UserModel.findById(userId);
     user.isBlocked = !user.isBlocked;
-    user.save();
+    await user.save();
 
     res.send(user.isBlocked);
   })
@@ -154,17 +163,20 @@ router.put(
   })
 );
 
-const generateTokenResponse = user => {
+// -------------------- JWT GENERATOR --------------------
+const generateTokenResponse = (user) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is not defined in .env file");
+  }
+
   const token = jwt.sign(
     {
       id: user.id,
       email: user.email,
       isAdmin: user.isAdmin,
     },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: '30d',
-    }
+    process.env.JWT_SECRET, // ✅ now always has a value
+    { expiresIn: '30d' }
   );
 
   return {

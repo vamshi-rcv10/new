@@ -21,3 +21,11 @@
   justify-content: center;
   align-items: center;
 }
+.note {
+  margin-bottom: 15px; /* Space below the note */
+  font-size: 15px; /* Slightly smaller font */
+  color: #555; /* A soft gray color */
+  font-weight: bold;
+}
+
+

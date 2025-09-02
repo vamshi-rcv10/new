@@ -1,23 +1,31 @@
 import { connect, set } from 'mongoose';
 import { UserModel } from '../models/user.model.js';
 import { FoodModel } from '../models/food.model.js';
-import { sample_users } from '../data.js';
-import { sample_foods } from '../data.js';
+import { sample_users, sample_foods } from '../data.js';
 import bcrypt from 'bcryptjs';
+
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
 
 export const dbconnect = async () => {
   try {
-    connect(process.env.MONGO_URI, {
+    const mongoUri = process.env.MONGO_URI;
+    if (!mongoUri) {
+      throw new Error('MONGO_URI environment variable is missing!');
+    }
+
+    await connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
+    console.log('Database connected successfully');
+
     await seedUsers();
     await seedFoods();
-    console.log('connect successfully---');
+
   } catch (error) {
-    console.log(error);
+    console.error('Database connection error:', error);
   }
 };
 
@@ -37,8 +45,8 @@ async function seedUsers() {
 }
 
 async function seedFoods() {
-  const foods = await FoodModel.countDocuments();
-  if (foods > 0) {
+  const foodsCount = await FoodModel.countDocuments();
+  if (foodsCount > 0) {
     console.log('Foods seed is already done!');
     return;
   }
@@ -48,5 +56,5 @@ async function seedFoods() {
     await FoodModel.create(food);
   }
 
-  console.log('Foods seed Is Done!');
+  console.log('Foods seed is done!');
 }

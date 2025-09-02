@@ -7,6 +7,7 @@
   "install-all": "cd backend && npm install && cd ../frontend && npm install",
   "build-fe": "cd frontend && npm run build",
   "build": "npm run install-all && npm run build-fe",
+  "postbuild": "mv -f frontend/build backend/src/public",
   "start": "cd backend && npm start"
   },
   "keywords": [],

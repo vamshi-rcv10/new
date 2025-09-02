@@ -4,16 +4,21 @@
   "description": "## 1. Demo And Installation",
   "main": "index.js",
   "scripts": {
-  "install-all": "cd backend && npm install && cd ../frontend && npm install",
-  "build-fe": "cd frontend && npm run build",
-  "build": "npm run install-all && npm run build-fe",
-  "postbuild": "mv -f frontend/build backend/src/public",
+  "install-backend": "cd backend && npm install",
+  "install-frontend": "cd frontend && npm install",
+  "install-all": "npm run install-backend && npm run install-frontend",
+  "build-fe": "cd frontend && npm install && npm run build",
+  "build": "npm run build-fe && npm run postbuild",
+  "postbuild": "cp -r frontend/build backend/src/public",
   "start": "cd backend && npm start"
-  },
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "engines": {
     "node": "22.x"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

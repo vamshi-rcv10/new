@@ -9,7 +9,6 @@
   "install-all": "npm run install-backend && npm run install-frontend",
   "build-fe": "cd frontend && npm install && npm run build",
   "build": "npm run build-fe && npm run postbuild",
-  //"postbuild": "cp -r frontend/build backend/src/public",
   "start": "cd backend && npm start"
 },
   "keywords": [],

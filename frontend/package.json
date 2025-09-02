@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "axios": "^1.4.0",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -14,8 +16,10 @@
     "react-hook-form": "^7.53.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.2",
+    "schema-utils": "^2.7.1",
+    "terser-webpack-plugin": "^5.3.14",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
